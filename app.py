@@ -17,7 +17,7 @@ def predictEndpoint():
     if not model:
         return "model is not instantiated yet"
 
-    return jsonify(model)
+    return jsonify(user)
 
 
 if __name__ == '__main__':
