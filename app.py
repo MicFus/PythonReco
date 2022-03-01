@@ -10,6 +10,11 @@ model = load_lightfm_hybrid_100k()
 generator = LightFMGenerator(model)
 
 
+@app.route("/api/health")
+def healthCheck():
+    return ""
+
+
 @app.route("/predict")
 def predictEndpoint():
     #app.logger.debug('Handling predict request')
