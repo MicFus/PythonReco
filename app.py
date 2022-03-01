@@ -15,18 +15,16 @@ def predictEndpoint():
     #app.logger.debug('Handling predict request')
     print('predict endpoint run', file=sys.stdout)
 
-    user = int(request.args.get('userId'))
-    count = int(request.args.get('count'))
+    try:
+        user = int(request.args.get('userId'))
+        count = int(request.args.get('count'))
+        result = generator.predict(user, count)
+        return jsonify(result.tolist())
 
-    logging.info("Handling predict request")
-
-    # light_fm_predict(model, int(user), 10)
-    result = generator.predict(user, count)
-    print(result, file=sys.stdout)
-
-    return jsonify(result.tolist())
+    except:
+        return "please provide userId and count in query string"
 
 
 if __name__ == '__main__':
     print('Starting application', file=sys.stdout)
-    app.run(host='127.0.0.1', port=5001, debug=True)
+    app.run(debug=True)
